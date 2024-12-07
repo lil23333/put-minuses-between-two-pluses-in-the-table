@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>mrBin</title>
+<style>
+body {
+background-color : #5F9EA0;
+}
+div {
+border: 1px solid #333;
+box-shadow: 8px 5px 8px;
+heigth : 30px;
+width  : 50px;
+backgroung-color : #F7F8A0;
+}
+.color1 {
+background-color : #DC143C;
+}
+
+.hh {
+font-weigth : bold;
+font-size : 24 px;
+}
+
+.color2 {
+background-color : #2F4F4F;
+}
+.hidden {
+display : none;
+}
+
+table {
+border-collapse: collapse;
+border : 1 px solid grey;
+}
+
+td {
+padding: 10px 20px;
+border : 1px solid grey;
+background-color : #F0F8FF;
+}
+
+.div1 {
+heigth : 30px;
+width  : 50px;
+background-color : #F0F8FF;
+position : relative;
+}
+.div2 {
+heigth : 20px;
+width  : 40px;
+background-color : #474a94;
+
+}
+.div3 {
+heigth : 10px;
+width  : 30px;
+background-color : #5757B4;
+position : absolute;
+}
+.div4 {
+heigth : 40px;
+width  : 60px;
+background-color : #E9F089;
+position : absolute;
+}
+.formstyleright {
+position: absolute;
+heigth : 40px;
+width  : 60px;
+right: 0;
+}
+.formstyleleft {
+position: absolute;
+heigth : 40px;
+width  : 60px;
+left: 0;
+}
+.formstylecenter {
+margin: 0 auto;
+heigth : 40px;
+width  : 60px;
+}
+
+.disabled {
+pointer-events: none;
+}
+
+</style>
+
+</head>
+
+<body>
+<script src = 'https://code.jquery.com/jquery-3.7.1.js'></script>
+
+<table></table>
+
+<script>
+let table = document.querySelector('table');
+
+for (let i = 0; i < 7; i++) {
+    let tr = document.createElement('tr');
+for (let j = 0; j < 7; j++) {
+    let td = document.createElement('td');
+    tr.appendChild(td);
+}
+    table.appendChild(tr);
+}
+
+let tds = document.querySelectorAll('td');
+let count = 0;
+let arr = [];
+
+for (let i = 0; i < tds.length; i++) { arr.push(tds[i]); }
+
+
+tds.forEach(td=>td.addEventListener('click', ()=> {
+    td.textContent = '+';
+
+    count ++;
+    if (count > 2) {
+       td.textContent = '';
+    }
+
+
+let resultStart = arr.findIndex(function (el) {
+    if (el.textContent == '+') {
+    return el;
+}});
+
+let resultEnd = arr.findLastIndex(function (el) {
+    if (el.textContent == '+') {
+    return el;
+}});
+
+    $('td').filter(function (i) {return i > resultStart && i < resultEnd}).text('-');
+
+
+}));
+</script>
+</body>
+</html>
